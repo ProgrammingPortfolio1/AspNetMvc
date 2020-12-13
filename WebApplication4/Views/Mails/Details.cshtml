@@ -1,0 +1,58 @@
+﻿@model WebApplication4.Models.Mail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Mail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fromemail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fromemail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.toemail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.toemail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subjectemail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subjectemail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.messageemail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.messageemail)
+        </dd>
+
+        <dt style="display:none">
+            @Html.DisplayNameFor(model => model.curuser)
+        </dt>
+
+        <dd style="display:none">
+            @Html.DisplayFor(model => model.curuser)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

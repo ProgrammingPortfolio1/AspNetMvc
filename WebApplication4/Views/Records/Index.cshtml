@@ -1,0 +1,151 @@
+﻿@model IEnumerable<WebApplication4.Models.Record>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<div class="navbar navbar-inverse">
+    <div class="container">
+        @*<div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>*@
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+                @*<li>@Html.ActionLink("View Emails", "Index", "Mails")</li>*@
+
+                <li><a href="#" onclick="$('#taable').tableExport({type:'excel', ignoreColumn:[8], escape:'false'});">Export XLS</a></li>
+            
+            </ul>
+            @*@Html.Partial("_LoginPartial")*@
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<link href="~/datatablescripts/scriptsfolder/jquery.dataTables.min.css" rel="stylesheet" />
+
+<link href="~/datatablescripts/scriptsfolder/colReorder.dataTables.min.css" rel="stylesheet" />
+
+<table id="taable" class="table table-striped table-bordered display">
+
+    <thead>
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mobilephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.birthdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th style="display:none">
+                @Html.DisplayNameFor(model => model.curuser)
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mobilephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.birthdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td style="display:none">
+                    @Html.DisplayFor(modelItem => item.curuser)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@section scripts{
+
+    <script src="~/datatablescripts/scriptsfolder/jquery.dataTables.min.js"></script>
+
+    <script src="~/datatablescripts/scriptsfolder/dataTables.fixedColumns.min.js"></script>
+
+    <script src="~/datatablescripts/scriptsfolder/dataTables.colReorder.min.js"></script>
+
+    <script src="~/tableexportscripts/table2excel/tableExport.js"></script>
+
+    <script src="~/tableexportscripts/table2excel/jquery.base64.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#taable').DataTable({
+                "responsive": true,
+
+                //"colReorder": true,
+
+                "colReorder": {
+                    "fixedColumnsRight": 1
+                },
+
+                "columnDefs": [
+        { "orderable": false, "targets": 8 }
+                ]
+            });
+        });
+    </script>
+
+}

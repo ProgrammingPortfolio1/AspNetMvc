@@ -1,0 +1,124 @@
+﻿@model IEnumerable<WebApplication4.Models.Mail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+
+<div class="navbar navbar-inverse">
+    <div class="container">
+        @*<div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>*@
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("View Entries", "Index", "Entries")</li>
+
+            </ul>
+            @*@Html.Partial("_LoginPartial")*@
+        </div>
+    </div>
+</div>
+
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+<link href="~/datatablescripts/scriptsfolder/jquery.dataTables.min.css" rel="stylesheet" />
+
+<link href="~/datatablescripts/scriptsfolder/colReorder.dataTables.min.css" rel="stylesheet" />
+
+<table id="taable2" class="table table-striped table-bordered display">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fromemail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.toemail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.subjectemail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.messageemail)
+            </th>
+            <th style="display:none">
+                @Html.DisplayNameFor(model => model.curuser)
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fromemail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.toemail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subjectemail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.messageemail)
+                </td>
+                <td style="display:none">
+                    @Html.DisplayFor(modelItem => item.curuser)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+
+
+@section scripts{
+
+    <script src="~/datatablescripts/scriptsfolder/jquery.dataTables.min.js"></script>
+
+    <script src="~/datatablescripts/scriptsfolder/dataTables.colReorder.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#taable2').DataTable({
+                "responsive": true,
+                "colReorder": true,
+                "columnDefs": [
+        { "orderable": false, "targets": 5 }
+                ]
+            });
+        });
+    </script>
+
+}
+
+
+
+
